@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nafas.DAL", "Nafas.DAL\Nafas.DAL.csproj", "{6B6735F3-7FCC-4D97-A9C1-7128D803F75F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nafas.BLL", "Nafas.BLL\Nafas.BLL.csproj", "{78D199E9-6389-47E0-8D59-48A24245F200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nafas", "Nafas\Nafas.csproj", "{E02CAE56-C82E-4B22-B2D2-2B5410197114}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B6735F3-7FCC-4D97-A9C1-7128D803F75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6735F3-7FCC-4D97-A9C1-7128D803F75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6735F3-7FCC-4D97-A9C1-7128D803F75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6735F3-7FCC-4D97-A9C1-7128D803F75F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D199E9-6389-47E0-8D59-48A24245F200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D199E9-6389-47E0-8D59-48A24245F200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D199E9-6389-47E0-8D59-48A24245F200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D199E9-6389-47E0-8D59-48A24245F200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {888895A9-E0C2-4596-9E97-D2712FD1D9D9}
+	EndGlobalSection
+EndGlobal
