@@ -35,7 +35,7 @@ public class main
         changePasswordDTO.OldPassword = Console.ReadLine();
         Console.WriteLine("Enter newpassword");
         changePasswordDTO.NewPassword = Console.ReadLine();
-        Console.WriteLine(userService.ChangePassword);
+        Console.WriteLine(userService.ChangePassword(changePasswordDTO));
 
     }
 }
