@@ -46,6 +46,36 @@ namespace Nafas.DAL.Repositories
 
             return null;
         }
+        public bool ChangePassword(ChangePasswordDTO user)
+        {
+            string query = "SP_User_ChangePassword";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserId", user.UserId);
+                        command.Parameters.AddWithValue("@OldPassword", user.OldPassword);
+                        command.Parameters.AddWithValue("@NewPassword", user.NewPassword);
+
+                        int rowsAffected = (int)command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
 
     }
 }
