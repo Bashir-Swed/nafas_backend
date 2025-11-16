@@ -172,7 +172,7 @@ namespace Nafas.DAL.Repositories
 
 
         }
-        public bool CheckUserbynameand(string username,int userID)
+        public bool CheckUserbynameandID(string username,int userID)
         {
             string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username and UserID=userID";
             try
