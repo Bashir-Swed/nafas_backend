@@ -1,5 +1,4 @@
-﻿using Nafas.DAL.DTOs.User;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -34,18 +33,47 @@ namespace Nafas.DAL.Repositories
                         command.Parameters.AddWithValue("@GenderIsMale", user.GenderIsMale);
                         command.Parameters.AddWithValue("@IsAdmin", user.IsAdmin);
 
-                        int? id= (int)command.ExecuteScalar();
+                        int? id = (int)command.ExecuteScalar();
                         return id;
 
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
             }
+            public void CheckUser(int userId)
+        {
+            string query = "SELECT COUNT * FROM Users WHERE Id = @UserId";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+
+                        int count = (int)command.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+        }
 
             return null;
         }
 
-    }
+}
 }
