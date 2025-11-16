@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using Nafas.DAL.DTOs.User;
 
 namespace Nafas.DAL.Repositories
 {
@@ -13,20 +14,27 @@ namespace Nafas.DAL.Repositories
     {
         //NewUserDTO user=new NewUserDTO();
         public int? AddNewUser(NewUserDTO user)
+
         {
             string query = "SP_User_AddNewUser";
             try
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@UserName", user.UserName);
+
+                        
                         command.Parameters.AddWithValue("@Password", user.Password);
+                        
                         command.Parameters.AddWithValue("@Email", user.Email);
+                        
                         command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                        
                         command.Parameters.AddWithValue("@Weight", user.Weight);
                         command.Parameters.AddWithValue("@Height", user.Height);
                         command.Parameters.AddWithValue("@Age", user.Age);
@@ -43,7 +51,9 @@ namespace Nafas.DAL.Repositories
             {
                 Console.WriteLine(ex.Message);
             }
-            public void CheckUser(int userId)
+            return null;
+        }
+        public bool CheckUser(int userId)
         {
             string query = "SELECT COUNT * FROM Users WHERE Id = @UserId";
             try
@@ -59,7 +69,7 @@ namespace Nafas.DAL.Repositories
 
                         if (count > 0)
                         {
-                            Console.WriteLine(ex.Message);
+                            return true;
                         }
 
                     }
@@ -70,9 +80,8 @@ namespace Nafas.DAL.Repositories
                 Console.WriteLine(ex.Message);
 
             }
-        }
 
-            return null;
+            return false;
         }
         public bool ChangePassword(ChangePasswordDTO user)
         {
@@ -105,5 +114,36 @@ namespace Nafas.DAL.Repositories
             return false;
         }
 
-}
+        public bool UpdateUserName(UserDTO user)
+        {
+            string query = @"Update Users set UserName=@UserName where UserID=@UserID and Password=@Password and Email=@Email";
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand command=new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        command.Parameters.AddWithValue("@UserID", user.UserID);
+                        command.Parameters.AddWithValue("@Passwordfdfd", user.Password);
+                        command.Parameters.AddWithValue("@Email", user.Email);
+
+                        int rowsAffected= (int)command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return false;
+
+        }
+    }
 }
