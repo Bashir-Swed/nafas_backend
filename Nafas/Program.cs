@@ -8,7 +8,7 @@ public class main
     {
         NewUserDTO user = new NewUserDTO();
         userService userService = new userService();
-        Console.WriteLine("user name :");
+        /*Console.WriteLine("user name :");
         user.UserName = Console.ReadLine();
         Console.WriteLine("password :");
         user.Password = Console.ReadLine();
@@ -27,7 +27,15 @@ public class main
         Console.WriteLine("is admin :");
         user.IsAdmin=bool.Parse(Console.ReadLine());
 
-        Console.WriteLine(userService.AddNewUser(user));
+        Console.WriteLine(userService.AddNewUser(user));*/
+        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO();
+        Console.WriteLine("enter userId");
+        changePasswordDTO.UserId=int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter oldpassword");
+        changePasswordDTO.OldPassword = Console.ReadLine();
+        Console.WriteLine("Enter newpassword");
+        changePasswordDTO.NewPassword = Console.ReadLine();
+        Console.WriteLine(userService.ChangePassword(changePasswordDTO));
 
     }
 }
