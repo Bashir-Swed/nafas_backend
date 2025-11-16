@@ -100,6 +100,7 @@ namespace Nafas.DAL.Repositories
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
