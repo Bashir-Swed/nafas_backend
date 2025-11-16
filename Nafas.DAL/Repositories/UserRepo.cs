@@ -34,7 +34,6 @@ namespace Nafas.DAL.Repositories
                         command.Parameters.AddWithValue("@Email", user.Email);
                         
                         command.Parameters.AddWithValue("@FirstName", user.FirstName);
-                        
                         command.Parameters.AddWithValue("@Weight", user.Weight);
                         command.Parameters.AddWithValue("@Height", user.Height);
                         command.Parameters.AddWithValue("@Age", user.Age);
@@ -55,7 +54,7 @@ namespace Nafas.DAL.Repositories
         }
         public bool CheckUser(int userId)
         {
-            string query = "SELECT COUNT * FROM Users WHERE Id = @UserId";
+            string query = "SELECT COUNT(*) FROM Users WHERE Id = @UserId";
             try
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
@@ -145,5 +144,59 @@ namespace Nafas.DAL.Repositories
             return false;
 
         }
+        public bool CheckUserbyname(string username)
+        {
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+
+                        connection.Open();
+                        int count = (int)cmd.ExecuteScalar();
+
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+
+
+        }
+        public bool CheckUserbynameand(string username,int userID)
+        {
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username and UserID=userID";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+
+                        connection.Open();
+                        int count = (int)cmd.ExecuteScalar();
+                       
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+
     }
 }
