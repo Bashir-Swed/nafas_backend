@@ -47,5 +47,20 @@ public class main
         note.Notes = Console.ReadLine();
         Console.WriteLine(medicalService.AddMedicalNotes(note));*/
 
+        UserDTO userDTO = new UserDTO();
+        Console.WriteLine("enter usert id:");
+        userDTO.UserID = int.Parse(Console.ReadLine());
+        Console.WriteLine("enter username :");
+        userDTO.UserName = Console.ReadLine();
+        Console.WriteLine("enter password :");
+        userDTO.Password = Console.ReadLine();
+        Console.WriteLine("enter email :");
+        userDTO.Email = Console.ReadLine();
+        Console.WriteLine(userService.UpdateUserName(userDTO));
+
+        /*Console.WriteLine("enter id");
+        int x = int.Parse(Console.ReadLine());
+        Console.WriteLine(userService.CheckUser(x));*/
+
     }
 }
