@@ -77,5 +77,36 @@ namespace Nafas.DAL.Repositories
             return false;
         }
 
+        public bool UpdateUserName(UserDTO user)
+        {
+            string query = @"Update Users set UserName=@UserName where UserID=@UserID and Password=@Password and Email=@Email";
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand command=new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        command.Parameters.AddWithValue("@UserID", user.UserID);
+                        command.Parameters.AddWithValue("@Passwordfdfd", user.Password);
+                        command.Parameters.AddWithValue("@Email", user.Email);
+
+                        int rowsAffected= (int)command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return false;
+
+        }
     }
 }

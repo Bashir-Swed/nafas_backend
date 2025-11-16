@@ -1,4 +1,5 @@
 ﻿using Nafas.BLL.Services;
+using Nafas.DAL.DTOs.Medical;
 using Nafas.DAL.DTOs.User;
 using System; 
 
@@ -26,16 +27,25 @@ public class main
         user.GenderIsMale=bool.Parse(Console.ReadLine());
         Console.WriteLine("is admin :");
         user.IsAdmin=bool.Parse(Console.ReadLine());
-
         Console.WriteLine(userService.AddNewUser(user));*/
-        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO();
+
+
+        /*ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO();
         Console.WriteLine("enter userId");
         changePasswordDTO.UserId=int.Parse(Console.ReadLine());
         Console.WriteLine("Enter oldpassword");
         changePasswordDTO.OldPassword = Console.ReadLine();
         Console.WriteLine("Enter newpassword");
         changePasswordDTO.NewPassword = Console.ReadLine();
-        Console.WriteLine(userService.ChangePassword(changePasswordDTO));
+        Console.WriteLine(userService.ChangePassword(changePasswordDTO));*/
+
+        /*MedicalNotesDTO note = new MedicalNotesDTO();
+        MedicalService medicalService = new MedicalService();
+        Console.WriteLine("enter userId");
+        note.UserId = int.Parse(Console.ReadLine());
+        Console.WriteLine("enter notes");
+        note.Notes = Console.ReadLine();
+        Console.WriteLine(medicalService.AddMedicalNotes(note));*/
 
     }
 }

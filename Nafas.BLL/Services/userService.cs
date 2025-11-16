@@ -21,5 +21,7 @@ namespace Nafas.BLL.Services
         {
             return _userRepo.ChangePassword(user);
         }
+        
+        public bool UpdateUserName(user)
     }
 }
