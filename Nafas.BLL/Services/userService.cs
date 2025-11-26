@@ -29,5 +29,14 @@ namespace Nafas.BLL.Services
 
         }
         
+        public bool UpdateUserName(UserDTO user)
+        {
+            if (_userRepo.CheckUser(user.UserID)) throw new Exception("this user is already exist ");
+            return _userRepo.UpdateUserName(user);
+        }
+        public bool CheckUser(int userID)
+        {
+            return _userRepo.CheckUser(userID);
+        }
     }
 }

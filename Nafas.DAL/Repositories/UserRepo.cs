@@ -54,7 +54,11 @@ namespace Nafas.DAL.Repositories
         }
         public bool CheckUser(int userId)
         {
+
             string query = "SELECT COUNT(*) FROM Users WHERE Id = @UserId";
+
+         //  string query = "SELECT f=1 from Users WHERE UserID = 9";
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
@@ -124,8 +128,9 @@ namespace Nafas.DAL.Repositories
                     {
                         connection.Open();
                         command.Parameters.AddWithValue("@UserID", user.UserID);
-                        command.Parameters.AddWithValue("@Passwordfdfd", user.Password);
+                        command.Parameters.AddWithValue("@Password", user.Password);
                         command.Parameters.AddWithValue("@Email", user.Email);
+                        command.Parameters.AddWithValue("@UserName", user.UserName);
 
                         int rowsAffected= (int)command.ExecuteNonQuery();
                         if (rowsAffected > 0)
@@ -136,6 +141,7 @@ namespace Nafas.DAL.Repositories
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
