@@ -52,7 +52,7 @@ namespace Nafas.DAL.Repositories
             }
             return null;
         }
-        public bool CheckUser(int userId)
+        public bool CheckUserByID(int userId)
         {
 
             string query = "SELECT COUNT(*) FROM Users WHERE Id = @UserId";
