@@ -53,7 +53,7 @@ namespace Nafas.DAL.Repositories
             }
             return null;
         }
-        public bool CheckUser(int userId)
+        public bool CheckUserByID(int userId)
         {
             string query = "SELECT f=1 from Users WHERE UserID = 9";
             try
