@@ -17,10 +17,9 @@ namespace Nafas.BLL.Services
 
             return _userRepo.AddNewUser(user);
 
-            // kajdlkajkrjkaljf
-
 
         }
+   
 
         public bool ChangePassword(ChangePasswordDTO user)
         {
@@ -31,12 +30,35 @@ namespace Nafas.BLL.Services
         
         public bool UpdateUserName(UserDTO user)
         {
-            if (_userRepo.CheckUser(user.UserID)) throw new Exception("this user is already exist ");
+            if (_userRepo.CheckUserByID(user.UserID)) throw new Exception("this user is already exist ");
             return _userRepo.UpdateUserName(user);
         }
         public bool CheckUser(int userID)
         {
-            return _userRepo.CheckUser(userID);
+            return _userRepo.CheckUserByID(userID);
         }
+        public bool? CheckUserByName(string user)
+        {
+
+            return _userRepo.CheckUserByName(user);
+
+
+        }
+        public bool? CheckUserByNameAndID(string user,int Id)
+        {
+
+            return _userRepo.CheckUserByNameAndID(user,Id);
+
+
+        }
+        public bool? CheckUserByNameAndPassword(string username, string password)
+        {
+
+            return _userRepo.CheckUserByNameAndPassword(username, password);
+
+
+        }
+
+
     }
 }
