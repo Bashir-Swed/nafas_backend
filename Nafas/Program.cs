@@ -63,15 +63,15 @@ public class main
         int x = int.Parse(Console.ReadLine());
         Console.WriteLine(userService.CheckUser(x));*/
 
-        UserRepo userRepo = new UserRepo();
-        Console.WriteLine(userRepo.CheckUserByID(1));
+
+        /*int x = int.Parse(Console.ReadLine());
         string name = Console.ReadLine();
-        string password= Console.ReadLine();
-        Console.WriteLine(userRepo.CheckUserbyname(name));
-        Console.WriteLine(userRepo.AddNewUser(user));
-        Console.WriteLine(userRepo.CheckUserbynameandID(name,1));
-        Console.WriteLine(userRepo.CheckUserbynameandPassword(name, password));
-     
+        string pass = Console.ReadLine();
+        //Console.WriteLine(userService.CheckUserByNameAndPassword(name, pass));
+        //Console.WriteLine(userService.CheckUserByName(name));
+        //Console.WriteLine(userService.CheckUserByNameAndID(name, x));
+        //Console.WriteLine(userService.CheckUserByID(x));*/
+
 
     }
 }

@@ -33,7 +33,7 @@ namespace Nafas.BLL.Services
             if (_userRepo.CheckUserByID(user.UserID)) throw new Exception("this user is already exist ");
             return _userRepo.UpdateUserName(user);
         }
-        public bool CheckUser(int userID)
+        public bool CheckUserByID(int userID)
         {
             return _userRepo.CheckUserByID(userID);
         }
