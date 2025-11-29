@@ -1,6 +1,7 @@
 ﻿using Nafas.BLL.Services;
 using Nafas.DAL.DTOs.Medical;
 using Nafas.DAL.DTOs.User;
+using Nafas.DAL.Repositories;
 using System; 
 
 public class main
@@ -60,19 +61,17 @@ public class main
 
         /*Console.WriteLine("enter id");
         int x = int.Parse(Console.ReadLine());
-        Console.WriteLine(userService.CheckUserByID(x));*/
+        Console.WriteLine(userService.CheckUser(x));*/
 
-        UserProfileDTO profile = new UserProfileDTO();
-        Console.WriteLine("Enter id");
-        int id = int.Parse(Console.ReadLine());
-        /*Console.WriteLine(userService.GetUserProfile(id).UserName);*/
-        profile = userService.GetUserProfile(id);
-        Console.WriteLine($"username ={profile.UserName} ");
-        Console.WriteLine($"firstname ={profile.FirstName} ");
-        Console.WriteLine($"Age ={profile.Age} ");
-        Console.WriteLine($"Height ={profile.Height} ");
-        Console.WriteLine($"Weigt ={profile.Weight} ");
-        Console.WriteLine($"Email ={profile.Email} ");
-        Console.WriteLine($"Gender is male ={profile.GenderIsMale} ");
+        UserRepo userRepo = new UserRepo();
+        Console.WriteLine(userRepo.CheckUserByID(1));
+        string name = Console.ReadLine();
+        string password= Console.ReadLine();
+        Console.WriteLine(userRepo.CheckUserbyname(name));
+        Console.WriteLine(userRepo.AddNewUser(user));
+        Console.WriteLine(userRepo.CheckUserbynameandID(name,1));
+        Console.WriteLine(userRepo.CheckUserbynameandPassword(name, password));
+     
+
     }
 }

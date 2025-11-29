@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Nafas.DAL.DTOs.User;
-using System.Security.AccessControl;
 
 namespace Nafas.DAL.Repositories
 {
@@ -35,7 +34,6 @@ namespace Nafas.DAL.Repositories
                         command.Parameters.AddWithValue("@Email", user.Email);
                         
                         command.Parameters.AddWithValue("@FirstName", user.FirstName);
-                        
                         command.Parameters.AddWithValue("@Weight", user.Weight);
                         command.Parameters.AddWithValue("@Height", user.Height);
                         command.Parameters.AddWithValue("@Age", user.Age);
@@ -56,11 +54,11 @@ namespace Nafas.DAL.Repositories
         }
         public bool CheckUserByID(int userId)
         {
-            string query =
-                @"if exists(select f=1 from Users where UserID=@UserID)
-	                    select cast(1 as bit)
-                    else 
-	                    select cast (0 as bit)";
+
+            string query = "SELECT COUNT(*) FROM Users WHERE UserID=@userId";
+
+         //  string query = "SELECT f=1 from Users WHERE UserID = 9";
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
@@ -68,14 +66,15 @@ namespace Nafas.DAL.Repositories
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserID", userId);
+                        command.Parameters.AddWithValue("@userId", userId);
 
-                        bool ok =(bool) command.ExecuteScalar();
-                        if (ok)
+                        int count = (int)command.ExecuteScalar();
+
+                        if (count > 0)
                         {
                             return true;
                         }
-                        else return false;
+
                     }
                 }
             }
@@ -151,31 +150,22 @@ namespace Nafas.DAL.Repositories
             return false;
 
         }
-        public UserProfileDTO? GetUserProfile(int UserID)
+        public bool CheckUserByName(string username)
         {
-            string query = "select UserName,Email,FirstName,[Weight],Height,Age,GenderIsMale from Users where UserID=@UserID";
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
                 {
-                    using(SqlCommand command=new SqlCommand(query, connection))
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
+                        cmd.Parameters.AddWithValue("@Username", username);
+
                         connection.Open();
-                        command.Parameters.AddWithValue("@UserID", UserID);
-                        SqlDataReader reader = command.ExecuteReader();
-                        UserProfileDTO userProfile = new UserProfileDTO();
-                        if (reader.Read())
-                        {
-                            Console.WriteLine((string)reader["UserName"]);
-                            userProfile.Email =(string) reader["Email"];
-                            userProfile.UserName =(string) reader["UserName"];
-                            userProfile.FirstName =(string) reader["FirstName"];
-                            userProfile.Age =(int) reader["Age"];
-                            userProfile.GenderIsMale =(bool) reader["GenderIsMale"];
-                            userProfile.Weight =(decimal) reader["Weight"];
-                            userProfile.Height =(int) reader["Height"];
-                        }
-                        return userProfile;
+                        int count = (int)cmd.ExecuteScalar();
+
+                        return count > 0;
                     }
                 }
             }
@@ -183,7 +173,63 @@ namespace Nafas.DAL.Repositories
             {
                 Console.WriteLine(ex.Message);
             }
-                return null;
+                return false;
+
+
+
         }
+        public bool CheckUserByNameAndID(string username,int userID)
+        {
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username and UserID=userID";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+
+                        connection.Open();
+                        int count = (int)cmd.ExecuteScalar();
+                       
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+        public bool CheckUserByNameAndPassword(string username, string password)
+        {
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", password);
+
+                        connection.Open();
+                        int count = (int)cmd.ExecuteScalar();
+
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
     }
 }
