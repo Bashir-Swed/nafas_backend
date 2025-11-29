@@ -47,7 +47,7 @@ public class main
         note.Notes = Console.ReadLine();
         Console.WriteLine(medicalService.AddMedicalNotes(note));*/
 
-        UserDTO userDTO = new UserDTO();
+        /*UserDTO userDTO = new UserDTO();
         Console.WriteLine("enter usert id:");
         userDTO.UserID = int.Parse(Console.ReadLine());
         Console.WriteLine("enter username :");
@@ -56,11 +56,23 @@ public class main
         userDTO.Password = Console.ReadLine();
         Console.WriteLine("enter email :");
         userDTO.Email = Console.ReadLine();
-        Console.WriteLine(userService.UpdateUserName(userDTO));
+        Console.WriteLine(userService.UpdateUserName(userDTO));*/
 
         /*Console.WriteLine("enter id");
         int x = int.Parse(Console.ReadLine());
-        Console.WriteLine(userService.CheckUser(x));*/
+        Console.WriteLine(userService.CheckUserByID(x));*/
 
+        UserProfileDTO profile = new UserProfileDTO();
+        Console.WriteLine("Enter id");
+        int id = int.Parse(Console.ReadLine());
+        /*Console.WriteLine(userService.GetUserProfile(id).UserName);*/
+        profile = userService.GetUserProfile(id);
+        Console.WriteLine($"username ={profile.UserName} ");
+        Console.WriteLine($"firstname ={profile.FirstName} ");
+        Console.WriteLine($"Age ={profile.Age} ");
+        Console.WriteLine($"Height ={profile.Height} ");
+        Console.WriteLine($"Weigt ={profile.Weight} ");
+        Console.WriteLine($"Email ={profile.Email} ");
+        Console.WriteLine($"Gender is male ={profile.GenderIsMale} ");
     }
 }

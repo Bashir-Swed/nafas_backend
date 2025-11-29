@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Nafas.DAL.DTOs.User;
+using System.Security.AccessControl;
 
 namespace Nafas.DAL.Repositories
 {
@@ -55,7 +56,11 @@ namespace Nafas.DAL.Repositories
         }
         public bool CheckUserByID(int userId)
         {
-            string query = "SELECT f=1 from Users WHERE UserID = 9";
+            string query =
+                @"if exists(select f=1 from Users where UserID=@UserID)
+	                    select cast(1 as bit)
+                    else 
+	                    select cast (0 as bit)";
             try
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
@@ -63,15 +68,14 @@ namespace Nafas.DAL.Repositories
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@UserID", userId);
 
-                        int count = (int)command.ExecuteScalar();
-
-                        if (count > 0)
+                        bool ok =(bool) command.ExecuteScalar();
+                        if (ok)
                         {
                             return true;
                         }
-
+                        else return false;
                     }
                 }
             }
@@ -146,6 +150,40 @@ namespace Nafas.DAL.Repositories
 
             return false;
 
+        }
+        public UserProfileDTO? GetUserProfile(int UserID)
+        {
+            string query = "select UserName,Email,FirstName,[Weight],Height,Age,GenderIsMale from Users where UserID=@UserID";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using(SqlCommand command=new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        command.Parameters.AddWithValue("@UserID", UserID);
+                        SqlDataReader reader = command.ExecuteReader();
+                        UserProfileDTO userProfile = new UserProfileDTO();
+                        if (reader.Read())
+                        {
+                            Console.WriteLine((string)reader["UserName"]);
+                            userProfile.Email =(string) reader["Email"];
+                            userProfile.UserName =(string) reader["UserName"];
+                            userProfile.FirstName =(string) reader["FirstName"];
+                            userProfile.Age =(int) reader["Age"];
+                            userProfile.GenderIsMale =(bool) reader["GenderIsMale"];
+                            userProfile.Weight =(decimal) reader["Weight"];
+                            userProfile.Height =(int) reader["Height"];
+                        }
+                        return userProfile;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+                return null;
         }
     }
 }
