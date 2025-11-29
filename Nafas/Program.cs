@@ -72,6 +72,14 @@ public class main
         //Console.WriteLine(userService.CheckUserByNameAndID(name, x));
         //Console.WriteLine(userService.CheckUserByID(x));*/
 
-
+        int x = int.Parse(Console.ReadLine());
+        UserProfileDTO userProfile = userService.GetUserProfile(x);
+        Console.WriteLine($"userName : {userProfile.UserName}");
+        Console.WriteLine($"first name : {userProfile.FirstName}");
+        Console.WriteLine($"email : {userProfile.Email}");
+        Console.WriteLine($"age : {userProfile.Age}");
+        Console.WriteLine($"weight : {userProfile.Weight}");
+        Console.WriteLine($"height : {userProfile.Height}");
+        Console.WriteLine($"gender is male : {userProfile.GenderIsMale}");
     }
 }

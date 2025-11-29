@@ -230,7 +230,45 @@ namespace Nafas.DAL.Repositories
             }
         }
 
-
+        public UserProfileDTO? GetUserProfile(int userID)
+        {
+            string query = @"
+                                select UserName,Email,FirstName,[Weight],Height,Age,GenderIsMale from Users
+                                where UserID=@UserID;";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", userID);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                UserProfileDTO userProfile = new UserProfileDTO
+                                {
+                                    UserName =(string) reader["UserName"],
+                                    Email =(string) reader["Email"],
+                                    FirstName =(string) reader["FirstName"],
+                                    Weight = (decimal)reader["Weight"],
+                                    Height = (int)reader["Height"],
+                                    Age = (int)reader["Age"],
+                                    GenderIsMale = (bool)reader["GenderIsMale"]
+                                };
+                                return userProfile;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
 
     }
 }
