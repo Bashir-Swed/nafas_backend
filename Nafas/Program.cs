@@ -61,25 +61,7 @@ public class main
 
         /*Console.WriteLine("enter id");
         int x = int.Parse(Console.ReadLine());
-        Console.WriteLine(userService.CheckUser(x));*/
+        Console.WriteLine(userService.CheckUserByID(x));*/
 
-
-        /*int x = int.Parse(Console.ReadLine());
-        string name = Console.ReadLine();
-        string pass = Console.ReadLine();
-        //Console.WriteLine(userService.CheckUserByNameAndPassword(name, pass));
-        //Console.WriteLine(userService.CheckUserByName(name));
-        //Console.WriteLine(userService.CheckUserByNameAndID(name, x));
-        //Console.WriteLine(userService.CheckUserByID(x));*/
-
-        int x = int.Parse(Console.ReadLine());
-        UserProfileDTO userProfile = userService.GetUserProfile(x);
-        Console.WriteLine($"userName : {userProfile.UserName}");
-        Console.WriteLine($"first name : {userProfile.FirstName}");
-        Console.WriteLine($"email : {userProfile.Email}");
-        Console.WriteLine($"age : {userProfile.Age}");
-        Console.WriteLine($"weight : {userProfile.Weight}");
-        Console.WriteLine($"height : {userProfile.Height}");
-        Console.WriteLine($"gender is male : {userProfile.GenderIsMale}");
     }
 }
