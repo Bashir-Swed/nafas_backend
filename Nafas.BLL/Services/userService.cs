@@ -22,8 +22,8 @@ namespace Nafas.BLL.Services
      
         public bool ChangePassword(ChangePasswordDTO user)
         {
-            return _userRepo.ChangePassword(user);
 
+            return _userRepo.ChangePassword(user);
 
         }
         
@@ -59,6 +59,7 @@ namespace Nafas.BLL.Services
         }
         public UserProfileDTO? GetUserProfile(int userID)
         {
+            if(!_userRepo.CheckUserByID(userID)) throw new Exception("not found this user ");
             return _userRepo.GetUserProfile(userID);
         }
 
