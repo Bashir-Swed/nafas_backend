@@ -8,12 +8,12 @@ namespace Nafas.DAL.DTOs.User
 {
     public class UserProfileDTO
     {
-        public int UserID { get; set; }
+        public string UserName {  get; set; }
+        public string Email {  get; set; }
         public string FirstName { get; set; }
-        public float Weight { get; set; }
+        public decimal Weight { get; set; }
         public int Height { get; set; }
         public int Age { get; set; }
         public bool GenderIsMale { get; set; }
-        public bool IsAdmin { get; set; }
     }
 }
