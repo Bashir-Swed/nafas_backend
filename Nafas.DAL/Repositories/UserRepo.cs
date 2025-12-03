@@ -132,7 +132,7 @@ namespace Nafas.DAL.Repositories
                         command.Parameters.AddWithValue("@Email", user.Email);
                         command.Parameters.AddWithValue("@UserName", user.UserName);
 
-                        int rowsAffected= (int)command.ExecuteNonQuery();
+                        int rowsAffected= command.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
                             return true;
