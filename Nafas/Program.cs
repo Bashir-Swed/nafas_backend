@@ -8,7 +8,27 @@ public class main
 {
     public static void Main(string[] args)
     {
-        NewUserDTO user = new NewUserDTO();
+        // NewUserDTO user = new NewUserDTO();
+        UserDTO user = new UserDTO()
+        {
+            UserID = 1,
+            Password = "ggg",
+            Email = "ggg",
+            UserName = "sh"
+        };
+        NewUserDTO newuser = new NewUserDTO()
+        {
+            UserName = "sss",
+            Password = "123",
+            Email = "ss7@gmail.com",
+            FirstName = "ss",
+          Weight = 48.7f,
+            Height = 162,
+            Age=20,
+            GenderIsMale=false,
+            IsAdmin=false,
+
+        };
         userService userService = new userService();
         /*Console.WriteLine("user name :");
         user.UserName = Console.ReadLine();
@@ -67,11 +87,11 @@ public class main
         Console.WriteLine(userRepo.CheckUserByID(1));
         string name = Console.ReadLine();
         string password= Console.ReadLine();
-        Console.WriteLine(userRepo.CheckUserbyname(name));
-        Console.WriteLine(userRepo.AddNewUser(user));
-        Console.WriteLine(userRepo.CheckUserbynameandID(name,1));
-        Console.WriteLine(userRepo.CheckUserbynameandPassword(name, password));
-     
+        Console.WriteLine(userRepo.CheckUserByName(name));
+        Console.WriteLine(userRepo.AddNewUser(newuser));
+        Console.WriteLine(userRepo.CheckUserByNameAndID(name,1));
+        Console.WriteLine(userRepo.CheckUserByNameAndPassword(name, password));
+        Console.WriteLine(userRepo.UpdateUserName(user)?"a":"f");
 
     }
 }
