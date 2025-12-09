@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nafas.DAL.DTOs.Diseases
+namespace Nafas.DAL.DTOs.Medical
 {
-    public class MedicalKnowledge
+    public class MedicalKnowledgeDTO
     {
-        public int DiseaseID {  get; set; }
         public string DiseaseName {  get; set; }
         public string Discription {  get; set; }
         public string Prevention { get; set; }

@@ -83,7 +83,7 @@ public class main
         int x = int.Parse(Console.ReadLine());
         Console.WriteLine(userService.CheckUser(x));*/
 
-        UserRepo userRepo = new UserRepo();
+        /*UserRepo userRepo = new UserRepo();
         Console.WriteLine(userRepo.CheckUserByID(1));
         string name = Console.ReadLine();
         string password= Console.ReadLine();
@@ -92,6 +92,14 @@ public class main
         Console.WriteLine(userRepo.CheckUserByNameAndID(name,1));
         Console.WriteLine(userRepo.CheckUserByNameAndPassword(name, password));
         Console.WriteLine(userRepo.UpdateUserName(user)?"a":"f");
-
+*/
+        MedicalKnowledgeDTO d = new MedicalKnowledgeDTO();
+        MedicalService medicalService = new MedicalService();
+        d.DiseaseName = Console.ReadLine();
+        d.Treatment = Console.ReadLine();
+        d.Symptoms = Console.ReadLine();
+        d.Discription = Console.ReadLine();
+        d.Prevention = Console.ReadLine();
+        Console.WriteLine(medicalService.AddNewDisease(d));
     }
 }
