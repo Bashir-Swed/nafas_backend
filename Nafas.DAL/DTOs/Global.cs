@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nafas.DAL
+namespace Nafas.DAL.DTOs
 {
     public class Global
     {

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
-using Nafas.DAL.DTOs.Diseases;
+using Nafas.DAL.DTOs;
 using Nafas.DAL.DTOs.Medical;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,9 +39,9 @@ namespace Nafas.DAL.Repositories
             }
             return false;
         }
-        public bool AddNewDisease(MedicalKnowledge Disease)
+        public int? AddNewDisease(MedicalKnowledgeDTO Disease)
         {
-            string query = @"insert into Diseases(DiseaseName,Discription,Prevention,Symptoms,Treatment)
+            string query = @"insert into MedicalKnowledge(DiseaseName,Discription,Prevention,Symptoms,Treatment)
 values(@DiseaseName,@Discription,@Prevention,@Symptoms,@Treatment)";
             try
             {
@@ -54,11 +55,8 @@ values(@DiseaseName,@Discription,@Prevention,@Symptoms,@Treatment)";
                         command.Parameters.AddWithValue("@Symptoms", Disease.Symptoms);
                         command.Parameters.AddWithValue("@Treatment", Disease.Treatment);
                         connection.Open();
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            return true;
-                        }
+                        int id =(int) command.ExecuteScalar();
+                        return id;
                     }
 
                 }
@@ -67,7 +65,7 @@ values(@DiseaseName,@Discription,@Prevention,@Symptoms,@Treatment)";
             {
                 Console.WriteLine(ex.Message);
             }
-            return false;
+            return null;
         }
     }
 }

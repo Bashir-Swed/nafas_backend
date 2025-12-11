@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Nafas.DAL.DTOs.User;
+using Nafas.DAL.DTOs;
 
 namespace Nafas.DAL.Repositories
 {
@@ -269,6 +270,7 @@ namespace Nafas.DAL.Repositories
             }
             return null;
         }
+
 
     }
 }

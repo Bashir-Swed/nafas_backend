@@ -15,5 +15,9 @@ namespace Nafas.BLL.Services
         {
             return _medicalRepo.AddMedicalNotes(note);
         }
+        public int? AddNewDisease(MedicalKnowledgeDTO Disease)
+        {
+            return _medicalRepo.AddNewDisease(Disease);
+        }
     }
 }
