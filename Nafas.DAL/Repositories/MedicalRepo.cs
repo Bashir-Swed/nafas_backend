@@ -19,7 +19,7 @@ namespace Nafas.DAL.Repositories
             {
                 using (SqlConnection connection = new SqlConnection(Global.connectionstring))
                 {
-                    using(SqlCommand command=new SqlCommand(query,connection))
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@UserID", note.UserId);
                         command.Parameters.AddWithValue("@Notes", note.Notes);
@@ -33,7 +33,7 @@ namespace Nafas.DAL.Repositories
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -49,13 +49,13 @@ values(@DiseaseName,@Discription,@Prevention,@Symptoms,@Treatment)";
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@DiseaseName",Disease.DiseaseName);
+                        command.Parameters.AddWithValue("@DiseaseName", Disease.DiseaseName);
                         command.Parameters.AddWithValue("@Discription", Disease.Discription);
                         command.Parameters.AddWithValue("@Prevention", Disease.Prevention);
                         command.Parameters.AddWithValue("@Symptoms", Disease.Symptoms);
                         command.Parameters.AddWithValue("@Treatment", Disease.Treatment);
                         connection.Open();
-                        int id =(int) command.ExecuteScalar();
+                        int id = (int)command.ExecuteScalar();
                         return id;
                     }
 
@@ -67,5 +67,130 @@ values(@DiseaseName,@Discription,@Prevention,@Symptoms,@Treatment)";
             }
             return null;
         }
+
+        public int? UpdateDisease(MedicalKnowledgeDTO Disease)
+        {
+            string query = @"UPDATE Diseases
+                     SET DiseaseName = @DiseaseName,
+                         Discription =@Discription,
+                         Prevention = @Prevention,
+                         Symptoms = @Symptoms,
+                         Treatment = @Treatment
+                     WHERE DiseaseID = @DiseaseID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@DiseaseName", Disease.DiseaseName);
+                        command.Parameters.AddWithValue("@Discription", Disease.Discription);
+                        command.Parameters.AddWithValue("@Prevention", Disease.Prevention);
+                        command.Parameters.AddWithValue("@Symptoms", Disease.Symptoms);
+                        command.Parameters.AddWithValue("@Treatment", Disease.Treatment);
+
+                        connection.Open();
+                        int rows = command.ExecuteNonQuery();
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+
+        public int? DeleteDisease(int diseaseID)
+        {
+            string query = @"DELETE FROM Diseases
+                     WHERE DiseaseID = @DiseaseID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@DiseaseID", diseaseID);
+
+                        connection.Open();
+                        int rows = command.ExecuteNonQuery();
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+
+
+        public int? UpdateMedicalNotes(MedicalNotesDTO note)
+        {
+            string query = @" UPDATE MedicalNotes
+                     SET Notes=@Notes
+					  WHERE UserID=@UserID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Notes", note.Notes);
+
+
+                        connection.Open();
+                        int rows = command.ExecuteNonQuery();
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+
+        public int? DeleteMedicalNotes(MedicalNotesDTO note)
+        {
+            string query = @" Delete FROM MedicalNotes WHERE UserID=@UserID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Notes", note.Notes);
+
+
+                        connection.Open();
+                        int rows = command.ExecuteNonQuery();
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+
+        }
     }
 }
+
