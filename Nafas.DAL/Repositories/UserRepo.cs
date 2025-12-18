@@ -272,5 +272,39 @@ namespace Nafas.DAL.Repositories
         }
 
 
+        public bool DeleteUser(int userId)
+        {
+
+            string query = "Delete from Users where UserID=@userId";
+
+        
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Global.connectionstring))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userId", userId);
+
+                        int count = (int)command.ExecuteNonQuery();
+
+                        if (count > 0)
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+
+            return false;
+        }
     }
 }
