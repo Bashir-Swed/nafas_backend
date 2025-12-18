@@ -10,7 +10,7 @@ namespace Nafas.BLL.Services
 {
     public class MedicalService
     {
-        private readonly MedicalRepo _medicalRepo=new MedicalRepo();
+        private readonly MedicalRepo _medicalRepo = new MedicalRepo();
         public bool AddMedicalNotes(MedicalNotesDTO note)
         {
             return _medicalRepo.AddMedicalNotes(note);
@@ -18,6 +18,26 @@ namespace Nafas.BLL.Services
         public int? AddNewDisease(MedicalKnowledgeDTO Disease)
         {
             return _medicalRepo.AddNewDisease(Disease);
+
         }
+        public int? UpdateDisease(MedicalKnowledgeDTO Disease)
+        {
+            return _medicalRepo.UpdateDisease(Disease);
+
+        }
+        public int? DeleteDisease(int DseaseID)
+        {
+            return _medicalRepo.DeleteDisease(DseaseID);
+
+        }
+        public int? UpdateMedicalNotes(MedicalNotesDTO note)
+        {
+            return _medicalRepo.UpdateMedicalNotes(note);
+        }
+       public int? DeleteMedicalNotes(MedicalNotesDTO note)
+        {
+            return _medicalRepo.DeleteMedicalNotes(note);
+        }
+
     }
 }
