@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nafas.BLL", "Nafas.BLL\Nafa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nafas", "Nafas\Nafas.csproj", "{E02CAE56-C82E-4B22-B2D2-2B5410197114}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NafasApplication", "NafasApplication\NafasApplication.csproj", "{AFAB7482-3D4F-4C5A-9FCB-322044BC6B0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E02CAE56-C82E-4B22-B2D2-2B5410197114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFAB7482-3D4F-4C5A-9FCB-322044BC6B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFAB7482-3D4F-4C5A-9FCB-322044BC6B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFAB7482-3D4F-4C5A-9FCB-322044BC6B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFAB7482-3D4F-4C5A-9FCB-322044BC6B0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
