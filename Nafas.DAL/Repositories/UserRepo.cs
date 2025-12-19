@@ -117,7 +117,6 @@ namespace Nafas.DAL.Repositories
             }
             return false;
         }
-
         public bool UpdateUserName(UserDTO user)
         {
             string query = @"Update Users set UserName=@UserName where UserID=@UserID and Password=@Password and Email=@Email";
@@ -230,7 +229,6 @@ namespace Nafas.DAL.Repositories
                 return false;
             }
         }
-
         public UserProfileDTO? GetUserProfile(int userID)
         {
             string query = @"
@@ -270,14 +268,10 @@ namespace Nafas.DAL.Repositories
             }
             return null;
         }
-
-
         public bool DeleteUser(int userId)
         {
 
             string query = "Delete from Users where UserID=@userId";
-
-        
 
             try
             {
@@ -300,8 +294,7 @@ namespace Nafas.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-
+                throw ex;
             }
 
             return false;

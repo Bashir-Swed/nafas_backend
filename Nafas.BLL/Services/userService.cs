@@ -14,10 +14,7 @@ namespace Nafas.BLL.Services
     private readonly UserRepo _userRepo=new UserRepo();
         public int? AddNewUser(NewUserDTO user)
         {
-
             return _userRepo.AddNewUser(user);
-
-
         }
      
         public bool ChangePassword(ChangePasswordDTO user)
@@ -60,6 +57,10 @@ namespace Nafas.BLL.Services
         {
             if(!_userRepo.CheckUserByID(userID)) throw new Exception("not found this user ");
             return _userRepo.GetUserProfile(userID);
+        }
+        public bool DeleteUser(int userId)
+        {
+            return (_userRepo.DeleteUser(userId));
         }
 
 

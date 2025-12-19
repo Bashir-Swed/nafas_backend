@@ -101,5 +101,17 @@ namespace NafasApplication.Controllers
             }
         }
 
+        [HttpDelete("user")]
+        public ActionResult<bool> DeleteUser(int userId)
+        {
+            try
+            {
+                return Ok(_userService.DeleteUser(userId));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
